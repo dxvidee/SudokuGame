@@ -26,7 +26,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ onUndo, onReset, onNotesToggle
   }, []);
 
   return (
-    <div className="w-full max-w-[500px] flex justify-between items-center px-2 mb-6">
+    <div className="flex items-center justify-center gap-6 md:gap-10 mb-6 w-full max-w-[500px]">
       <button onClick={onUndo} className="flex flex-col items-center justify-center group active:scale-90 transition-all" title="Annulla">
         <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#f8f6f0] dark:bg-zinc-800 flex items-center justify-center text-[#f0ad25] group-hover:bg-[#f0ad25] group-hover:text-white transition-colors">
           <Undo2 size={24} strokeWidth={2.5} />

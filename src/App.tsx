@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#f4f2eb] flex flex-col font-sans">
+    <div className="min-h-screen w-full bg-[#f4f2eb] dark:bg-zinc-900 flex flex-col font-sans transition-colors duration-300">
       <Navbar />
       {view === 'home' ? (
         <Home 

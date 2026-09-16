@@ -10,6 +10,13 @@ html, body, #root {
   width: 100%;
   min-height: 100vh;
   background-color: #f4f2eb;
+  transition: background-color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body, #root {
+    background-color: #18181b; /* zinc-900 */
+  }
 }
 
 @layer utilities {

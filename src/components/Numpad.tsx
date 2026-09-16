@@ -11,11 +11,11 @@ export const Numpad: React.FC<NumpadProps> = ({ onNumberClick, selectedNumber, n
   const bottomRow = [6, 7, 8, 9];
 
   const getButtonClass = (num: number) => {
-    const base = "w-12 h-12 md:w-14 md:h-14 flex flex-col items-center justify-center rounded-full transition-all border border-gray-200/50 flex-none active:scale-95 ";
+    const base = "w-12 h-12 md:w-14 md:h-14 flex flex-col items-center justify-center rounded-full transition-all border border-gray-200/50 dark:border-zinc-700 flex-none active:scale-95 ";
     if (selectedNumber === num) {
       return base + "bg-[#f0ad25] text-white scale-110 shadow-sm border-[#f0ad25] active:scale-100";
     }
-    return base + "bg-transparent text-gray-700 hover:bg-gray-100 hover:border-gray-300";
+    return base + "bg-transparent text-gray-700 dark:text-zinc-200 hover:bg-gray-100 dark:hover:bg-zinc-800 hover:border-gray-300 dark:hover:border-zinc-600";
   };
 
   const renderNumber = (num: number) => {
@@ -29,7 +29,7 @@ export const Numpad: React.FC<NumpadProps> = ({ onNumberClick, selectedNumber, n
         >
           <span className="text-2xl md:text-3xl font-bold leading-none">{num}</span>
         </button>
-        <span className={`text-[10px] md:text-xs font-semibold mt-1 transition-all ${selectedNumber === num ? 'text-[#f0ad25] scale-110' : 'text-gray-400'} ${remaining <= 0 ? 'opacity-0 scale-75' : ''}`}>
+        <span className={`text-[10px] md:text-xs font-semibold mt-1 transition-all ${selectedNumber === num ? 'text-[#f0ad25] scale-110' : 'text-gray-400 dark:text-zinc-500'} ${remaining <= 0 ? 'opacity-0 scale-75' : ''}`}>
           {remaining}
         </span>
       </div>
@@ -49,7 +49,7 @@ export const Numpad: React.FC<NumpadProps> = ({ onNumberClick, selectedNumber, n
             className={`w-12 h-12 md:w-14 md:h-14 flex-none flex items-center justify-center rounded-full text-2xl md:text-3xl font-bold transition-all border active:scale-95 ${
               selectedNumber === 0 
                 ? 'bg-red-500 text-white scale-110 shadow-sm border-red-500 active:scale-100' 
-                : 'bg-transparent text-gray-400 border-gray-200/50 hover:bg-red-50 hover:text-red-500 hover:border-red-200'
+                : 'bg-transparent text-gray-400 dark:text-zinc-500 border-gray-200/50 dark:border-zinc-700 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800'
             }`}
           >
             X

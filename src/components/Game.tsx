@@ -165,33 +165,36 @@ export const Game: React.FC<GameProps> = ({ onBack, sudokuState }) => {
   }
 
   return (
-    <div className="flex flex-col items-center flex-1 w-full bg-[#f4f2eb] px-4 py-6 relative">
+    <div className="flex flex-col items-center flex-1 w-full bg-[#f4f2eb] dark:bg-zinc-900 px-4 py-6 relative transition-colors duration-300">
       
-      {/* Toast Notification */}
-      {showToast && (
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 z-50 animate-slide-down">
-          <div className="bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg font-medium text-sm flex items-center gap-2">
-            <Check size={18} className="text-[#f0ad25]" />
-            Nessun errore! Tutto corretto finora.
-          </div>
-        </div>
-      )}
+      {/* Toast Nessun Errore */}
+      <div 
+        className={`fixed top-4 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-6 py-3 rounded-full shadow-lg flex items-center gap-2 z-50 transition-all duration-300 font-medium ${
+          showToast ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+      >
+        <Check size={20} className="text-[#f0ad25]" strokeWidth={3} />
+        Nessun errore trovato
+      </div>
 
-      {/* Modale Reset */}
+      {/* Modale Conferma Reset */}
       {showResetConfirm && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm">
-          <div className="bg-white p-6 rounded-3xl shadow-xl max-w-sm w-full flex flex-col items-center text-center animate-pop-in">
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Conferma Reset</h3>
-            <p className="text-gray-500 mb-6 text-sm">Sei sicuro di voler ricominciare questa partita? Tutti i progressi andranno persi.</p>
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 px-4 backdrop-blur-sm animate-pop-in">
+          <div className="bg-white dark:bg-zinc-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full flex flex-col items-center text-center border border-transparent dark:border-zinc-700">
+            <div className="w-16 h-16 bg-red-100 dark:bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+              <RotateCcw size={32} className="text-red-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-800 dark:text-zinc-100 mb-2">Riavviare?</h3>
+            <p className="text-gray-500 dark:text-zinc-400 mb-8">Vuoi davvero ricominciare da capo? Tutti i progressi attuali andranno persi.</p>
             <div className="flex gap-3 w-full">
               <button 
-                onClick={() => setShowResetConfirm(false)} 
-                className="flex-1 py-3 rounded-xl font-bold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors active:scale-95"
+                onClick={() => setShowResetConfirm(false)}
+                className="flex-1 py-3 rounded-xl font-bold bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-600 transition-colors"
               >
                 Annulla
               </button>
               <button 
-                onClick={() => { reset(); setShowResetConfirm(false); setVictoryDate(null); }} 
+                onClick={() => { reset(); setShowResetConfirm(false); setVictoryDate(null); }}
                 className="flex-1 py-3 rounded-xl font-bold bg-red-500 text-white hover:bg-red-600 transition-colors active:scale-95"
               >
                 Conferma
@@ -203,22 +206,22 @@ export const Game: React.FC<GameProps> = ({ onBack, sudokuState }) => {
 
       {/* Modale Vittoria */}
       {isWon && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm">
-          <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full flex flex-col items-center text-center animate-pop-in">
-            <div className="w-20 h-20 bg-[#f0ad25]/20 rounded-full flex items-center justify-center mb-4">
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 px-4 backdrop-blur-sm">
+          <div className="bg-white dark:bg-zinc-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full flex flex-col items-center text-center animate-pop-in border border-transparent dark:border-zinc-700">
+            <div className="w-20 h-20 bg-[#f0ad25]/20 dark:bg-[#f0ad25]/10 rounded-full flex items-center justify-center mb-4">
               <Trophy size={40} className="text-[#f0ad25]" />
             </div>
-            <h3 className="text-3xl font-bold text-gray-800 mb-2">Vittoria!</h3>
-            <p className="text-gray-500 mb-6">Hai completato con successo il Sudoku a livello <span className="font-bold text-[#f0ad25] uppercase">{difficulty}</span>.</p>
+            <h3 className="text-3xl font-bold text-gray-800 dark:text-zinc-100 mb-2">Vittoria!</h3>
+            <p className="text-gray-500 dark:text-zinc-400 mb-6">Hai completato con successo il Sudoku a livello <span className="font-bold text-[#f0ad25] uppercase">{difficulty}</span>.</p>
             
-            <div className="bg-gray-50 w-full rounded-2xl p-4 mb-6 flex flex-col gap-2">
+            <div className="bg-gray-50 dark:bg-zinc-900/50 w-full rounded-2xl p-4 mb-6 flex flex-col gap-2">
               <div className="flex justify-between items-center text-sm font-bold">
-                <span className="text-gray-400">Tempo Impiegato</span>
-                <span className="text-gray-800 text-lg">{formatTime(elapsedTime)}</span>
+                <span className="text-gray-400 dark:text-zinc-500">Tempo Impiegato</span>
+                <span className="text-gray-800 dark:text-zinc-200 text-lg">{formatTime(elapsedTime)}</span>
               </div>
               <div className="flex justify-between items-center text-sm font-bold">
-                <span className="text-gray-400">Data</span>
-                <span className="text-gray-800">
+                <span className="text-gray-400 dark:text-zinc-500">Data</span>
+                <span className="text-gray-800 dark:text-zinc-200">
                   {victoryDate?.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </span>
               </div>
@@ -227,7 +230,7 @@ export const Game: React.FC<GameProps> = ({ onBack, sudokuState }) => {
             <div className="flex gap-3 w-full">
               <button 
                 onClick={() => { reset(); setVictoryDate(null); }} 
-                className="flex-1 py-4 rounded-xl font-bold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                className="flex-1 py-4 rounded-xl font-bold bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-zinc-300 hover:bg-gray-200 dark:hover:bg-zinc-600 transition-colors"
               >
                 Rigioca
               </button>
@@ -246,14 +249,14 @@ export const Game: React.FC<GameProps> = ({ onBack, sudokuState }) => {
       <div className="w-full max-w-[500px] flex items-center mb-6">
         <button 
           onClick={onBack} 
-          className="flex items-center gap-2 text-gray-800 hover:text-gray-500 group transition-colors"
+          className="flex items-center gap-2 text-gray-800 dark:text-zinc-200 hover:text-gray-500 dark:hover:text-zinc-400 group transition-colors"
           title="Torna alla Home"
         >
           <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
           <span className="text-lg md:text-xl font-bold uppercase tracking-wide">{difficulty}</span>
         </button>
         <div className="ml-auto flex items-center justify-center">
-          <span className="text-sm font-bold text-gray-400 bg-gray-100/80 px-3 py-1 rounded-full shadow-sm">
+          <span className="text-sm font-bold text-gray-400 dark:text-zinc-500 bg-gray-100/80 dark:bg-zinc-800/80 px-3 py-1 rounded-full shadow-sm transition-colors duration-300">
             {formatTime(elapsedTime)}
           </span>
         </div>

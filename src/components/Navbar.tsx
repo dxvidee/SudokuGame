@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, HelpCircle, Calendar, Moon, Sun } from 'lucide-react';
 
 export const Navbar = () => {

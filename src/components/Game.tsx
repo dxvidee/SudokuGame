@@ -4,7 +4,7 @@ import { Toolbar } from './Toolbar';
 import { Numpad } from './Numpad';
 import { useSudoku } from '../hooks/useSudoku';
 
-import { ArrowLeft, Trophy, Check } from 'lucide-react';
+import { ArrowLeft, Trophy, Check, RotateCcw } from 'lucide-react';
 
 interface GameProps {
   onBack: () => void;
